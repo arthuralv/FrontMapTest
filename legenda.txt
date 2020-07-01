@@ -1,0 +1,33 @@
+A foto acima é um mapa de calor (Heat Map) que mostra os casos confirmados de COVID-19 de acordo com cada bairro de Campina Grande até o dia 16/06/20 às 16 horas, no total de 3,450 
+casos. A intensidade das cores representam a escala de quantidade de casos por bairro. Até esta data, os bairros com maiores números de casos em Campina Grande é de Catolé e Malvinas, com 251 casos cada.    
+
+Os 5 bairros com maior quantidade de casos:
+Bodocongó: 156
+José pinheiro: 186
+Liberdade: 201
+Catolé: 251
+Malvinas: 251
+
+Os dados podem ser acessados através do link na bio.
+
+Boa tarde a todos.
+
+#covid19 #machinelearning #artificialinteligence #UFCG #UEPB #NUTES #IFPB
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+A foto acima é um mapa de calor (heatmap) que mostra a quantidade de casos confirmados de COVID-19 por 1000 habitantes de acordo com cada região da Paraíba até o dia 29/06/20 às 16 horas, no total de 44,679 casos. A intensidade das cores representam a escala de quantidade de casos por cidade. Atualmente a área com maior número de casos na Paraíba é de 12,449, em João Pessoa.
+
+As 5 cidades com maior quantidade de casos:
+
+Patos: 1,306 / 12.14 a cada 1000 habitantes
+Cabedelo: 1,767 / 26.9 a cada 1000 habitantes
+Guarabira: 2,050 / 34.85 a cada 1000 habitantes
+Campina grande: 6,389 / 15.6 a cada 1000 habitantes
+João pessoa: 12,449 / 15.39 a cada 1000 habitantes
+
+Os dados podem ser acessados através do link na bio.
+
+Boa tarde a todos.
+#covid19 #machinelearning #artificialinteligence #UFCG #UEPB #NUTES #IFPB
+2 sem
