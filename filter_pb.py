@@ -15,8 +15,9 @@ def main():
             if row['state'] == 'PB':
                 fileWriter.writerow({'city': row['city'].upper()[:-3], 'cases': row['totalCases']})
                 lista.append((int(row['totalCases']), row['city'][:-3]))
-                lista.sort()
+                
                 soma += int(row['totalCases'])
+        lista.sort()
 
     new = lista[-5:]
     for elem in new:

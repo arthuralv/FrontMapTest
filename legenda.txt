@@ -3,12 +3,12 @@ casos. A intensidade das cores representam a escala de quantidade de casos por b
 
 Os 5 bairros com maior quantidade de casos:
 Bodocongó: 156
-José pinheiro: 186
+José Pinheiro: 186
 Liberdade: 201
 Catolé: 251
 Malvinas: 251
 
-Os dados podem ser acessados através do link na bio.
+Os dadosforam coletados diretamente dos hospitais.
 
 Boa tarde a todos.
 
@@ -16,18 +16,27 @@ Boa tarde a todos.
 
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
-A foto acima é um mapa de calor (heatmap) que mostra a quantidade de casos confirmados de COVID-19 por 1000 habitantes de acordo com cada região da Paraíba até o dia 29/06/20 às 16 horas, no total de 44,679 casos. A intensidade das cores representam a escala de quantidade de casos por cidade. Atualmente a área com maior número de casos na Paraíba é de 12,449, em João Pessoa.
+A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1000 habitantes, de acordo com cada região da Paraíba até o dia 29/06/20 às 16 horas, no total de 44,679 casos.
+
+A intensidade das cores representam a escala de quantidade de casos por 1000 habitantes em cada cidade.
+
+Atualmente a área com maior número de casos na Paraíba é de 12,449, em João Pessoa. Entretanto, a cidade com maior número de casos por 1000 habitantes é Riachão do Bacamarte com 38.49 aproximadamente.
 
 As 5 cidades com maior quantidade de casos:
+Patos: 1,306 | 12.14 por 1,000 habitantes
+Cabedelo: 1,767 | 26.9 por 1,000 habitantes
+Guarabira: 2,050 | 34.85 por 1,000 habitantes
+Campina Grande: 6,389 | 15.6 por 1,000 habitantes
+João Pessoa: 12,449 | 15.39 por 1,000 habitantes
 
-Patos: 1,306 / 12.14 a cada 1000 habitantes
-Cabedelo: 1,767 / 26.9 a cada 1000 habitantes
-Guarabira: 2,050 / 34.85 a cada 1000 habitantes
-Campina grande: 6,389 / 15.6 a cada 1000 habitantes
-João pessoa: 12,449 / 15.39 a cada 1000 habitantes
+As 5 cidades com maior quantidade de casos por 1000 habitantes:
+Pedras de Fogo: 899 | 31.59 por 1,000 habitantes
+Caaporã: 734 | 33.63 por 1,000 habitantes
+São josé do Sabugi: 140 | 33.81 por 1,000 habitantes
+Guarabira: 2,050 | 34.85 por 1,000 habitantes
+Riachão do Bacamarte: 174 | 38.49 por 1,000 habitantes
 
 Os dados podem ser acessados através do link na bio.
 
 Boa tarde a todos.
 #covid19 #machinelearning #artificialinteligence #UFCG #UEPB #NUTES #IFPB
-2 sem
