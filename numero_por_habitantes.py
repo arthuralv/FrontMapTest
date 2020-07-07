@@ -9,40 +9,51 @@ def main():
     hab = []
     soma = 0
 
-    with open('cases_1000_habitantes.csv', 'r', encoding='utf8') as mainFile, open('cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
+    with open('cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
         fileReader = csv.DictReader(mainFile)
-        fileWriter = csv.DictWriter(writeFile, fileReader.fieldnames)
+
+        fileWriter = csv.DictWriter(writeFile, ['city', 'Ncasos', 'Ncasos/1000H'])
         fileWriter.writeheader()
         # Arredondamento, até 1 casa
         
         for row in fileReader:
-
-            if row['Ncasos/1000H'] != None:
-                lista.append((int(row['Ncasos']), row['city'].capitalize()))
-                n_1000 = formatar(row['Ncasos/1000H'])
-                hab.append((float(n_1000), row['city'].capitalize()))
-                
-                fileWriter.writerow({'city': row['city'], 'Ncasos': row['Ncasos'], 'Ncasos/1000H': n_1000})
-
-            soma += int(row['Ncasos'])
+            if row['state'] == 'PB':
+                if row['city'] != 'CASO SEM LOCALIZAÇÃO DEFINIDA/PB':
+                    city = row['city'][:-3].upper()
+                    cases = row['totalCases']
+                    
+                    n_1000 = formatar(int(cases), find(city))
+                    soma += int(cases)
+                    
+                    lista.append((int(cases), city))
+                    hab.append((float(n_1000), city))
+                    
+                    fileWriter.writerow({'city': city, 'Ncasos': cases, 'Ncasos/1000H': n_1000})
 
         lista.sort()
         hab.sort()
+    print('\nMAIORES NÚMEROS DE CASOS------')
+    show(lista[-5:])
+    print('\nMAIORES NÚMEROS POR 1000 HAB--')
+    show(hab[-5:])
 
-    new = lista[-5:]
-    for elem in new:
-        print(str(elem[1]) + ':', elem[0])
-
-    print('------------------------------')
-
-    new = hab[-5:]
-    for elem in new:
-        print(str(elem[1]) + ':', elem[0])
-    print(soma)
-
-def formatar(num = 0):
+def formatar(num = 0, popCity = 1):
+    num = (1000 * num) / popCity
     inteiro, flutuante = str(num).split('.')
     flutuante = str(math.ceil(float(flutuante[:3]) / 10) * 10)
     return float(inteiro + '.' + str(flutuante))
+
+def find(city):
+    with open('popOrder.csv', 'r', encoding='utf8') as cityFile:
+        dictionary = csv.DictReader(cityFile)
+
+        for row in dictionary:
+            if row['city'] == city:
+                return int(row['pop'])
+        return 1
+
+def show(list):
+    for elem in list:
+        print(str(elem[1]) + ':', elem[0])
 
 main()
