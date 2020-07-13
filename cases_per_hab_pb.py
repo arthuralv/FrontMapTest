@@ -81,7 +81,7 @@ def main():
     hab = []
     soma = 0
 
-    with open('.//data//cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('.//data//cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
+    with open('.//data//cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('.//filtered_data//cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
         fileReader = csv.DictReader(mainFile)
 
         fileWriter = csv.DictWriter(writeFile, ['city', 'Ncasos', 'Ncasos/1000H'])
