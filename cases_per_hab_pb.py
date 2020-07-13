@@ -1,5 +1,5 @@
 # coding: utf-8
-# Filter de casos da paraíba por habitantes
+# Filter de casos da Paraíba por habitantes
 
 import csv
 import math
@@ -11,7 +11,7 @@ def formatar(num = 0, popCity = 1):
     return float(inteiro + '.' + str(flutuante))
 
 def find(city):
-    with open('popOrder.csv', 'r', encoding='utf8') as cityFile:
+    with open('.//data//popOrder.csv', 'r', encoding='utf8') as cityFile:
         dictionary = csv.DictReader(cityFile)
 
         for row in dictionary:
@@ -19,16 +19,15 @@ def find(city):
                 return int(row['pop'])
         return 1
 
+# João Pessoa: 16.566 / 20,48 por 1.000 habitantes
 def show_cases(case_list):
     for elem in case_list:
-            print(capitalize(elem[2]) + ':', thousand_format(elem[0]), '/', decimal_format(elem[1]), 'por 1000 habitantes')
-    else:
-        text1 = 'por 1.000 habitantes'
-    # Exemplo = Patos: 1,306 / 12.14 por 1,000 habitantes
-
+            print(capitalize(elem[2]) + ':', thousand_format(elem[0]), '/', decimal_format(elem[1]), 'por 1.000 habitantes')
+    
+# Alagoinha: 39,83 por 1000 habitantes / 577
 def show_cases_per_hab(case_list):
     for elem in case_list:
-            print(capitalize(elem[2]) + ':', decimal_format(elem[0]), 'por 1000 habitantes', '/', thousand_format(elem[1]))
+            print(capitalize(elem[2]) + ':', decimal_format(elem[0]), 'por 1.000 habitantes', '/', thousand_format(elem[1]))
     
 def thousand_format(num):
     return f'{num:,}'.replace(',','.')
@@ -61,11 +60,11 @@ def showLegend(lista, hab, total):
     casos_MQdC_PH = decimal_format(hab[-1][0])
 
     print(
-f'''A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1000 habitantes, de acordo com cada região da Paraíba até o dia {days}/{mouths}/{years} às {hours}:{minutes} hora(s), no total de {total} casos.
+f'''A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1.000 habitantes, de acordo com cada região da Paraíba até o dia {days}/{mouths}/{years} às {hours}:{minutes} hora(s), no total de {total} casos.
 
-A intensidade das cores representam a escala de quantidade de casos por 1000 habitantes em cada cidade.
+A intensidade das cores representam a escala de quantidade de casos por 1.000 habitantes em cada cidade.
 
-Atualmente a área com maior número de casos na Paraíba é de {casos_MQdC}, em {cidade_MQdC}. Entretanto, a cidade com maior número de casos por 1000 habitantes é {cidade_MQdC_PH} com {casos_MQdC_PH} aproximadamente.
+Atualmente a área com maior número de casos na Paraíba é de {casos_MQdC}, em {cidade_MQdC}. Entretanto, a cidade com maior número de casos por 1.000 habitantes é {cidade_MQdC_PH} com {casos_MQdC_PH} aproximadamente.
 '''
         )
     
@@ -82,7 +81,7 @@ def main():
     hab = []
     soma = 0
 
-    with open('cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
+    with open('.//data//cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('.//data//cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
         fileReader = csv.DictReader(mainFile)
 
         fileWriter = csv.DictWriter(writeFile, ['city', 'Ncasos', 'Ncasos/1000H'])
@@ -106,5 +105,5 @@ def main():
         hab.sort()
     
     showLegend(lista[-5:], hab[-5:], thousand_format(soma))
-    
+
 main()

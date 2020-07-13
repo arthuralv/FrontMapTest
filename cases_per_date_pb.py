@@ -7,7 +7,7 @@ def main():
     # {'data':, 'totalDeCasos':}
     date_map = {}
 
-    with open('cases_per_date.csv', 'r', encoding='utf8') as mainFile, open('cases_per_date_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
+    with open('.//data//cases_per_date_pb.csv', 'r', encoding='utf8') as mainFile, open('.//data//cases_per_date_pb_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
         fileReader = csv.DictReader(mainFile)
 
         fileWriter = csv.DictWriter(writeFile, ['data', 'qtdCasos'])

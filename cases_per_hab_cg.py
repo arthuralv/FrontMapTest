@@ -10,7 +10,7 @@ def main():
     bairros = {}
     bairros_csv = {}
 
-    with open('cases_cg.csv', 'r', encoding='utf8') as db, open('newDataBase.csv', 'r', encoding='utf8') as filenow:
+    with open('.//data//cases_cg.csv', 'r', encoding='utf8') as db, open('.//data//newDataBase.csv', 'r', encoding='utf8') as filenow:
         dbReader = csv.DictReader(db)
         fileReader = csv.DictReader(filenow)
 
@@ -35,7 +35,7 @@ def main():
                 if ehSemelhante(bairro, bairro_csv):
                     bairros[bairro] += bairros_csv[bairro_csv]
         
-    with open('cases_cg.csv', 'r', encoding='utf8') as reference, open('cases_cg_filtered.csv', 'w', newline='\n', encoding='utf8') as db:
+    with open('.//data//cases_cg.csv', 'r', encoding='utf8') as reference, open('.//data//cases_cg_filtered.csv', 'w', newline='\n', encoding='utf8') as db:
         dbWriter = csv.DictWriter(db, dbReader.fieldnames + ['n/1000'])
         dbWriter.writeheader()
         refReader = csv.DictReader(reference)
