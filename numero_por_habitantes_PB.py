@@ -4,36 +4,6 @@
 import csv
 import math
 
-def main():
-    lista = []
-    hab = []
-    soma = 0
-
-    with open('cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
-        fileReader = csv.DictReader(mainFile)
-
-        fileWriter = csv.DictWriter(writeFile, ['city', 'Ncasos', 'Ncasos/1000H'])
-        fileWriter.writeheader()
-        # Arredondamento, até 1 casa
-        
-        for row in fileReader:
-            if row['state'] == 'PB':
-                if row['city'] != 'CASO SEM LOCALIZAÇÃO DEFINIDA/PB':
-                    city = row['city'][:-3].upper()
-                    cases = int(row['totalCases'])
-                    
-                    n_1000 = float(formatar(int(cases), find(city)))
-                    soma += int(cases)
-                    
-                    lista.append((cases, n_1000, city))
-                    hab.append((n_1000, cases, city))
-                    
-                    fileWriter.writerow({'city': city, 'Ncasos': cases, 'Ncasos/1000H': n_1000})
-        lista.sort()
-        hab.sort()
-    
-    showLegend(lista[-5:], hab[-5:], thousand_format(soma))
-
 def formatar(num = 0, popCity = 1):
     num = (1000 * num) / popCity
     inteiro, flutuante = str(num).split('.')
@@ -65,6 +35,15 @@ def thousand_format(num):
 
 def decimal_format(num):
     return f'{num}'.replace('.',',')
+
+def capitalize(phrase):
+    phrase_list = phrase.split()
+    new = phrase_list[0].capitalize()
+
+    for i in range(1, len(phrase_list)):
+        new += ' ' + phrase_list[i].capitalize() if len(phrase_list[i]) > 2 else ' ' + phrase_list[i].lower()
+
+    return new
 
 def showLegend(lista, hab, total):
     
@@ -98,13 +77,34 @@ Atualmente a área com maior número de casos na Paraíba é de {casos_MQdC}, em
     print('As 5 cidades com maior quantidade de casos por 1000 habitantes:')
     show_cases_per_hab(hab)
 
-def capitalize(phrase):
-    phrase_list = phrase.split()
-    new = phrase_list[0].capitalize()
+def main():
+    lista = []
+    hab = []
+    soma = 0
 
-    for i in range(1, len(phrase_list)):
-        new += ' ' + phrase_list[i].capitalize() if len(phrase_list[i]) > 2 else ' ' + phrase_list[i].lower()
+    with open('cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
+        fileReader = csv.DictReader(mainFile)
 
-    return new
-
+        fileWriter = csv.DictWriter(writeFile, ['city', 'Ncasos', 'Ncasos/1000H'])
+        fileWriter.writeheader()
+        # Arredondamento, até 1 casa
+        
+        for row in fileReader:
+            if row['state'] == 'PB':
+                if row['city'] != 'CASO SEM LOCALIZAÇÃO DEFINIDA/PB':
+                    city = row['city'][:-3].upper()
+                    cases = int(row['totalCases'])
+                    
+                    n_1000 = float(formatar(int(cases), find(city)))
+                    soma += int(cases)
+                    
+                    lista.append((cases, n_1000, city))
+                    hab.append((n_1000, cases, city))
+                    
+                    fileWriter.writerow({'city': city, 'Ncasos': cases, 'Ncasos/1000H': n_1000})
+        lista.sort()
+        hab.sort()
+    
+    showLegend(lista[-5:], hab[-5:], thousand_format(soma))
+    
 main()
