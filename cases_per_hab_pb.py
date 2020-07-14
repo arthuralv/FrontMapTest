@@ -46,12 +46,12 @@ def capitalize(phrase):
 
 def showLegend(lista, hab, total):
     
-    days = '13'
-    mouths = '07'
-    years = '20'
+    days = input("Digite o dia: ").zfill(2)
+    mouths = input("Digite o mês: ").zfill(2)
+    years = input("Digite o ano: ").zfill(2)
 
-    hours = '11'
-    minutes = '00'
+    hours = input("Digite a hora: ").zfill(2)
+    minutes = input("Digite o minuto: ").zfill(2)
 
     cidade_MQdC = capitalize(lista[-1][2])
     casos_MQdC = thousand_format(lista[-1][0])

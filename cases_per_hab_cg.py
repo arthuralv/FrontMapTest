@@ -6,6 +6,11 @@ from difflib import SequenceMatcher
 def ehSemelhante(str1, str2):
    return SequenceMatcher(a=str1, b=str2).ratio() > .9
 
+def formatar(num = 0):
+    inteiro, flutuante = str(num).split('.')
+    flutuante = str(ceil(float(flutuante[:3]) / 10) * 10)
+    return float(inteiro + '.' + str(flutuante))
+
 def main():
     bairros = {}
     bairros_csv = {}
@@ -45,10 +50,4 @@ def main():
 
             dbWriter.writerow({'bairro': row['bairro'], 'cases': casos, 'n/1000': formatar(casos/1000)})
 
-def formatar(num = 0):
-    inteiro, flutuante = str(num).split('.')
-    flutuante = str(ceil(float(flutuante[:3]) / 10) * 10)
-    return float(inteiro + '.' + str(flutuante))
-
 main()
-
