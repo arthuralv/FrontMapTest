@@ -3,7 +3,7 @@ from unicodedata import normalize
 from math import ceil
 from difflib import SequenceMatcher
 
-def ehSemelhante(str1, str2):
+def is_similar(str1, str2):
    return SequenceMatcher(a=str1, b=str2).ratio() > .9
 
 def formatar(num = 0):
@@ -15,7 +15,7 @@ def main():
     bairros = {}
     bairros_csv = {}
 
-    with open('.//data//cases_cg.csv', 'r', encoding='utf8') as db, open('.//data//newDataBase.csv', 'r', encoding='utf8') as filenow:
+    with open('.//data//cases_per_hab_cg.csv', 'r', encoding='utf8') as db, open('.//data//cases_per_hab_cg_filtered.csv', 'r', encoding='utf8') as filenow:
         dbReader = csv.DictReader(db)
         fileReader = csv.DictReader(filenow)
 
@@ -37,7 +37,7 @@ def main():
         
         for bairro in bairros:
             for bairro_csv in bairros_csv:
-                if ehSemelhante(bairro, bairro_csv):
+                if is_similar(bairro, bairro_csv):
                     bairros[bairro] += bairros_csv[bairro_csv]
         
     with open('.//data//cases_cg.csv', 'r', encoding='utf8') as reference, open('.//filtered_data//cases_cg_filtered.csv', 'w', newline='\n', encoding='utf8') as db:
