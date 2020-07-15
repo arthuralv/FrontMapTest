@@ -7,10 +7,10 @@ import math
 # Arredondamento, até 1 ou 2 casas
 def format_number(num = 0, popCity = 1):
     num = (1000 * num) / popCity
-    inteiro, flutuante = str(num).split('.')
-    flutuante = str(math.ceil(float(flutuante[:3]) / 10) * 10)
+    integ_n, float_n = str(num).split('.')
+    float_n = str(math.ceil(float(float_n[:3]) / 10) * 10)
 
-    return float(inteiro + '.' + str(flutuante))
+    return float(integ_n + '.' + str(float_n))
 
 def find_city(city):
     with open('.//data//popOrder.csv', 'r', encoding='utf8') as cityFile:
@@ -55,18 +55,18 @@ def show_legend(lists, total, date, time):
     day, mouth, year = date
     hour, minute = time
 
-    cidade_MQdC = capitalize(list_cities_cases[-1][2])
-    casos_MQdC = thousand_format(list_cities_cases[-1][0])
+    city_with_highest_cases = capitalize(list_cities_cases[-1][2])
+    number_of_cases = thousand_format(list_cities_cases[-1][0])
 
-    cidade_MQdC_PH = capitalize(list_per_hab[-1][2])
-    casos_MQdC_PH = decimal_format(list_per_hab[-1][0])
+    city_with_highest_cases_ph = capitalize(list_per_hab[-1][2])
+    number_of_cases_ph = decimal_format(list_per_hab[-1][0])
 
     print(
-f'''A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1.000 habitantes, de acordo com cada região da Paraíba até o dia {days}/{mouths}/{years} às {hours}:{minutes} hora(s), no total de {total} casos.
+f'''A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1.000 habitantes, de acordo com cada região da Paraíba até o dia {day}/{mouth}/{year} às {hour}:{minute} hora(s), no total de {total} casos.
 
 A intensidade das cores representam a escala de quantidade de casos por 1.000 habitantes em cada cidade.
 
-Atualmente a área com maior número de casos na Paraíba é de {casos_MQdC}, em {cidade_MQdC}. Entretanto, a cidade com maior número de casos por 1.000 habitantes é {cidade_MQdC_PH} com {casos_MQdC_PH} aproximadamente.
+Atualmente a área com maior número de casos na Paraíba é de {number_of_cases}, em {city_with_highest_cases}. Entretanto, a cidade com maior número de casos por 1.000 habitantes é {city_with_highest_cases_ph} com {number_of_cases_ph} aproximadamente.
 '''
         )
     
@@ -103,7 +103,7 @@ def read_write_data(fileReader, fileWriter):
     return list_cities_cases[-5:], list_per_hab[-5:], total
 
 def main():
-    with open('.//data//cases_per_1000.csv', 'r', encoding='utf8') as mainFile, open('.//filtered_data//cases_per_1000_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
+    with open('.//data//cases_per_hab_pb.csv', 'r', encoding='utf8') as mainFile, open('.//filtered_data//cases_per_hab_pb_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
         fileReader = csv.DictReader(mainFile)
         fileWriter = csv.DictWriter(writeFile, ['city', 'Ncasos', 'Ncasos/1000H'])
 
