@@ -12,25 +12,30 @@ def format_number(num = 0, popCity = 1):
 
     return float(integ_n + '.' + str(float_n))
 
-def find_city(city):
-    with open('.//data//popOrder.csv', 'r', encoding='utf8') as cityFile:
-        dictionary = csv.DictReader(cityFile)
+def find_city(city, cityFile):
+    dictionary = csv.DictReader(cityFile)
 
-        for row in dictionary:
-            if row['city'] == city:
-                return int(row['pop'])
-        
-        return 1
+    for row in dictionary:
+        if row['city'] == city:
+            return int(row['pop'])
+    
+    return 1
 
 # João Pessoa: 16.566 / 20,48 por 1.000 habitantes
 def show_cases(case_list):
+    text = ''
     for elem in case_list:
-        print(capitalize(elem[2]) + ':', thousand_format(elem[0]), '/', decimal_format(elem[1]), 'por 1.000 habitantes')
+        text += (capitalize(elem[2]) + ": " + thousand_format(elem[0]) + " / " + decimal_format(elem[1]) + " por 1.000 habitantes\n")
+    
+    return text
     
 # Alagoinha: 39,83 por 1000 habitantes / 577
 def show_cases_per_hab(case_list):
+    text = ''
     for elem in case_list:
-        print(capitalize(elem[2]) + ':', decimal_format(elem[0]), 'por 1.000 habitantes', '/', thousand_format(elem[1]))
+        text += (capitalize(elem[2]) + ": " + decimal_format(elem[0]) + " por 1.000 habitantes / " + thousand_format(elem[1]) + "\n")
+    
+    return text
 
 # 1000 = 1.000    
 def thousand_format(num):
@@ -61,23 +66,17 @@ def show_legend(lists, total, date, time):
     city_with_highest_cases_ph = capitalize(list_per_hab[-1][2])
     number_of_cases_ph = decimal_format(list_per_hab[-1][0])
 
-    print(
-f'''A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1.000 habitantes, de acordo com cada região da Paraíba até o dia {day}/{mouth}/{year} às {hour}:{minute} hora(s), no total de {total} casos.
+    text = f'''
+A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos confirmados de COVID-19 por 1.000 habitantes, de acordo com cada região da Paraíba até o dia {day}/{mouth}/{year} às {hour}:{minute} hora(s), no total de {total} casos.
 
 A intensidade das cores representam a escala de quantidade de casos por 1.000 habitantes em cada cidade.
 
-Atualmente a área com maior número de casos na Paraíba é de {number_of_cases}, em {city_with_highest_cases}. Entretanto, a cidade com maior número de casos por 1.000 habitantes é {city_with_highest_cases_ph} com {number_of_cases_ph} aproximadamente.
+Atualmente a área com maior número de casos na Paraíba é de {number_of_cases}, em {city_with_highest_cases}. Entretanto, a cidade com maior número de casos por 1.000 habitantes é {city_with_highest_cases_ph} com {number_of_cases_ph} aproximadamente. 
+As 5 cidades com maior quantidade de casos:\n {show_cases(list_cities_cases)}
+As 5 cidades com maior quantidade de casos por 1000 habitantes:\n {show_cases_per_hab(list_per_hab)}
 '''
-        )
+    return text
     
-    print('As 5 cidades com maior quantidade de casos:')
-    show_cases(list_cities_cases)
-    
-    print('\n')
-
-    print('As 5 cidades com maior quantidade de casos por 1000 habitantes:')
-    show_cases_per_hab(list_per_hab)
-
 def read_write_data(fileReader, fileWriter):
     list_cities_cases = []
     list_per_hab = []
@@ -88,11 +87,13 @@ def read_write_data(fileReader, fileWriter):
             if row['city'] != 'CASO SEM LOCALIZAÇÃO DEFINIDA/PB':
                 city = row['city'][:-3].upper()
                 cases = int(row['totalCases'])
-                n_1000 = format_number(cases, find_city(city))
+
+                with open('.//data//popOrder.csv', 'r', encoding='utf8') as cityFile:
+                    n_1000 = format_number(cases, find_city(city, cityFile))
                 
                 list_cities_cases.append((cases, n_1000, city))
                 list_per_hab.append((n_1000, cases, city))
-                
+
                 fileWriter.writerow({'city': city, 'Ncasos': cases, 'Ncasos/1000H': n_1000})
                 
                 total += cases
@@ -118,6 +119,6 @@ def main():
     hour = input("Digite a hora: ").zfill(2)
     minute = input("Digite o minuto: ").zfill(2)
 
-    show_legend((list_cities_cases, list_per_hab), thousand_format(total), (day, mouth, year), (hour, minute))
+    print(show_legend((list_cities_cases, list_per_hab), thousand_format(total), (day, mouth, year), (hour, minute)))
 
 main()
