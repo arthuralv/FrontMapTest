@@ -1,4 +1,6 @@
 # Microservice para obter um csv e filtrar.
+# Por enquanto, está apenas com cases_per_hab_pb // casos por 1000 hab
+
 import requests # pip install requests
 import pymongo # python -m pip install pymongo[snappy,gssapi,srv,tls]
 import csv
@@ -72,8 +74,8 @@ A foto acima é um mapa de calor (Heat Map) que mostra a quantidade de casos con
 A intensidade das cores representam a escala de quantidade de casos por 1.000 habitantes em cada cidade.
 
 Atualmente a área com maior número de casos na Paraíba é de {number_of_cases}, em {city_with_highest_cases}. Entretanto, a cidade com maior número de casos por 1.000 habitantes é {city_with_highest_cases_ph} com {number_of_cases_ph} aproximadamente.\n 
-As 5 cidades com maior quantidade de casos:\n {show_cases(list_cities_cases)}
-As 5 cidades com maior quantidade de casos por 1000 habitantes:\n {show_cases_per_hab(list_per_hab)}
+As 5 cidades com maior quantidade de casos:\n{show_cases(list_cities_cases)}
+As 5 cidades com maior quantidade de casos por 1000 habitantes:\n{show_cases_per_hab(list_per_hab)}
 '''
     return text
     
