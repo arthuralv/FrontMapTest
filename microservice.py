@@ -2,7 +2,6 @@
 # Por enquanto, está apenas com cases_per_hab_pb // casos por 1000 hab
 
 import requests # pip install requests
-import pymongo # python -m pip install pymongo[snappy,gssapi,srv,tls]
 import csv
 import math
 
