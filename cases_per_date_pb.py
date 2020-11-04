@@ -16,7 +16,7 @@ def filter_data(date_map, fileReader):
 
 def write_data(date_map, fileWriter):
     for date in date_map:
-            fileWriter.writerow({'data': date, 'qtdCasos': date_map[date]})
+            fileWriter.writerow({'data': date, 'casos': date_map[date]})
 
 def main():
     # {'data':, 'totalDeCasos':}
@@ -24,7 +24,7 @@ def main():
 
     with open('.//data//cases_per_date_pb.csv', 'r', encoding='utf8') as mainFile, open('.//filtered_data//cases_per_date_pb_filtered.csv', 'w', newline='\n', encoding='utf8') as writeFile:
         fileReader = csv.DictReader(mainFile)
-        fileWriter = csv.DictWriter(writeFile, ['data', 'qtdCasos'])
+        fileWriter = csv.DictWriter(writeFile, ['data', 'casos'])
 
         fileWriter.writeheader()
         filter_data(date_map, fileReader)

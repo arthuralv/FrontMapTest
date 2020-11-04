@@ -9,10 +9,9 @@ def main():
         reader = csv.DictReader(file)
         writer = csv.DictWriter(newFile, reader.fieldnames)
         writer.writeheader()
- 
+
         for row in reader:
             if row['Resultado do Teste'].rstrip().lower() == 'positivo' and row['MunicÃ­pio de ResidÃªncia'].lower() == 'campina grande':
                 writer.writerow(row)
         
 main()
-
